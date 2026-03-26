@@ -1,0 +1,15 @@
+header {
+    height: 15vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #333;
+    color: beige;
+    border-bottom: 1px solid beige;
+}
+
+h4 {
+    font-weight: 400;
+}
