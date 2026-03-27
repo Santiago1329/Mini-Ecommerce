@@ -15,6 +15,7 @@ export const Products = () => {
 
   const [categoria, setCategoria] = useState('all')
   const [conDescuento, setConDescuento] = useState(false)
+  const [busqueda, setBusqueda] = useState("")
 
   useEffect(() => {
       fetch("https://dummyjson.com/products")
@@ -37,8 +38,9 @@ export const Products = () => {
   const productosFiltrados = productos.filter(producto => {
     const coincideCategoria = categoria === "all" || producto.category === categoria
     const coincideDescuento = !conDescuento || producto.discountPercentage > 2
+    const coincideBusqueda = producto.title.toLowerCase().includes(busqueda.toLowerCase())
 
-    return coincideCategoria && coincideDescuento
+    return coincideCategoria && coincideDescuento && coincideBusqueda
   })
 
   if (error) {
@@ -59,6 +61,8 @@ export const Products = () => {
         categoriaActiva={categoria} 
         onConDescuentoChange={setConDescuento}
         conDescuentoActivo={conDescuento}
+        onBusquedaChange={setBusqueda}
+        busquedaActiva={busqueda}
       />
 
       <section className='products'>

@@ -5,7 +5,9 @@ export const Nav = ({
   onCategoriaChange,
   categoriaActiva,
   onConDescuentoChange,
-  conDescuentoActivo
+  conDescuentoActivo,
+  onBusquedaChange,
+  busquedaActiva
 }) => {
   const [categorias, setCategorias] = useState([])
 
@@ -20,7 +22,7 @@ export const Nav = ({
       <div>
         <label htmlFor="categoria">Filtrar por categoría:</label>
         <select id="categoria" value={categoriaActiva} onChange={(e) => onCategoriaChange(e.target.value)}>
-          <option value="all">All</option>
+          <option value="all">All Categories</option>
           {categorias.map(categoria => (
             <option key={categoria.slug} value={categoria.slug}>{categoria.name}</option>
           ))}
@@ -28,11 +30,21 @@ export const Nav = ({
       </div>
 
       <div>
-        <label htmlFor="conDescuento">Productos con Descuento:</label>
+        <label htmlFor="conDescuento">Productos con descuento:</label>
         <input 
           type="checkbox"
           checked={conDescuentoActivo}
           onChange={(e) => onConDescuentoChange(e.target.checked)}
+        />
+      </div>
+
+      <div>
+        <input 
+          className="busqueda-input"
+          type="text" 
+          placeholder="Buscar producto..."
+          value={busquedaActiva}
+          onChange={(e) => onBusquedaChange(e.target.value)}
         />
       </div>
     </nav>

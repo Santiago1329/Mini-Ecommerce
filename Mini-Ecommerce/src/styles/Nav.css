@@ -4,8 +4,14 @@ nav {
     background-color: #333;
     display: flex;
     align-items: center;
-    gap: 3rem;
-    padding: 0 6rem;
+    justify-content: space-around;
+    padding: 0 4rem;
+}
+
+nav div {
+    width: 350px;
+    display: flex;
+    justify-content: center;
 }
 
 nav select {
@@ -18,4 +24,11 @@ nav select {
 label {
     color: beige;
     margin-right: 0.5rem;
+}
+
+.busqueda-input {
+    padding: 6px 10px;
+    width: 200px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
 }
