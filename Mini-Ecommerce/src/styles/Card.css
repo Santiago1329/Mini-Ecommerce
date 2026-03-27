@@ -72,3 +72,15 @@
         transform: rotate(360deg);
     }
 }
+
+
+/* estilos para el mensaje de error */
+
+.error-box {
+    background-color: #f8e0e0;
+    border: 1px solid red;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 50px;
+}
