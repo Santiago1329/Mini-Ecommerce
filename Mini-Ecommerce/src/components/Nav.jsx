@@ -1,7 +1,12 @@
 import { useEffect, useState } from "react"
 import "../styles/Nav.css"
 
-export const Nav = ({ onCategoriaChange, categoriaActiva }) => {
+export const Nav = ({
+  onCategoriaChange,
+  categoriaActiva,
+  onConDescuentoChange,
+  conDescuentoActivo
+}) => {
   const [categorias, setCategorias] = useState([])
 
   useEffect(() => {
@@ -12,13 +17,24 @@ export const Nav = ({ onCategoriaChange, categoriaActiva }) => {
 
   return (
     <nav>
-      <label htmlFor="categoria">Filtrar por categoría:</label>
-      <select id="categoria" value={categoriaActiva} onChange={(e) => onCategoriaChange(e.target.value)}>
-        <option value="all">All</option>
-        {categorias.map(categoria => (
-          <option key={categoria.slug} value={categoria.slug}>{categoria.name}</option>
-        ))}
-      </select>
+      <div>
+        <label htmlFor="categoria">Filtrar por categoría:</label>
+        <select id="categoria" value={categoriaActiva} onChange={(e) => onCategoriaChange(e.target.value)}>
+          <option value="all">All</option>
+          {categorias.map(categoria => (
+            <option key={categoria.slug} value={categoria.slug}>{categoria.name}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="conDescuento">Productos con Descuento:</label>
+        <input 
+          type="checkbox"
+          checked={conDescuentoActivo}
+          onChange={(e) => onConDescuentoChange(e.target.checked)}
+        />
+      </div>
     </nav>
   )
 }

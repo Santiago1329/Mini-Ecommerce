@@ -12,7 +12,9 @@ export const Products = () => {
   const [productos, setProducts] = useState([])
   const [loading, setLoading] =useState(true)
   const [error, setError] = useState(null)
+
   const [categoria, setCategoria] = useState('all')
+  const [conDescuento, setConDescuento] = useState(false)
 
   useEffect(() => {
       fetch("https://dummyjson.com/products")
@@ -32,7 +34,12 @@ export const Products = () => {
       })
   }, [])
 
-  const productosFiltrados = categoria === "all" ? productos : productos.filter(p => p.category === categoria)
+  const productosFiltrados = productos.filter(producto => {
+    const coincideCategoria = categoria === "all" || producto.category === categoria
+    const coincideDescuento = !conDescuento || producto.discountPercentage > 2
+
+    return coincideCategoria && coincideDescuento
+  })
 
   if (error) {
       return (
@@ -47,7 +54,12 @@ export const Products = () => {
 
   return (
     <>
-      <Nav onCategoriaChange={setCategoria} categoriaActiva={categoria} />
+      <Nav 
+        onCategoriaChange={setCategoria} 
+        categoriaActiva={categoria} 
+        onConDescuentoChange={setConDescuento}
+        conDescuentoActivo={conDescuento}
+      />
 
       <section className='products'>
         {loading
