@@ -18,7 +18,16 @@ export const Card = () => {
             <div className='card'>
                 <img src={producto.thumbnail} />
                 <h3>{producto.title}</h3>
-                <p>${producto.price}</p>
+                {producto.discountPercentage > 2 ? (
+                    <div className='price-container'>
+                        <span className='discount-percentage'>-{producto.discountPercentage}%</span>
+                        <p className='price-original'>${producto.price}</p>
+                        <p className='price-discounted'>${(producto.price - (producto.price * producto.discountPercentage / 100)).toFixed(2)}</p>
+                    </div>
+                ): (
+                    <p className='price'>${producto.price}</p>
+                )}
+                <p>⭐ {producto.rating}</p>
             </div>
         ))}
     </>
